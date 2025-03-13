@@ -1,0 +1,113 @@
+{
+    "examTitle": "Mid Term Exam",
+    "trimester": "Fall 2022",
+    "courseCode": "CSE 1111",
+    "courseTitle": "Structured Programming Language",
+    "totalMarks": 30,
+    "duration": "1:45 hours",
+    "questions": [
+        {
+            "questionNumber": 1,
+            "parts": [
+                {
+                    "part": "a",
+                    "questionText": "Rewrite the following code after correcting the errors.",
+                    "codeSnippet": "#includes <studio.h>\nint main() { \n int a, b, float sum; \n scanf(“%i”, &a); \n a , b=10; \n a+b =sum; \n Printf(“%d”, &sum); \n}",
+                    "marks": 2,
+                    "questionType": "Code Correction"
+                },
+                {
+                    "part": "b",
+                    "questionText": "Identify the invalid variable names from the following. Mention the reasons that make them invalid.\n 
+    sum_of_digit , switch , calculate sum , _value_ , Sum,  calculate-sum , 1st_sum",
+                    "codeSnippet": null,
+                    "marks": 2,
+                    "questionType": "Identification"
+                },
+                {
+                    "part": "c",
+                    "questionText": "Compute the values of the variables a, b, c, and d.",
+                    "codeSnippet": "int a = 17%7*5; \nfloat b = (int)(17.0/5); \nfloat c= 17/5; \nint d = (a>b) && c;",
+                    "marks": 2,
+                    "questionType": "Computation"
+                }
+            ]
+        },
+        {
+            "questionNumber": 2,
+            "parts": [
+                {
+                    "part": "a",
+                    "questionText": "Find the output of the following C code segment.",
+                    "codeSnippet": "#include <stdio.h>\nint main() { \n int num=3, sum = 10, i =7, j = 2; \n \n switch(num) { \n case 1: \n case 2: \n sum += --j*2; \n i--; \n case 3: \n sum = ++i*j--; \n break; \n case 4: \n sum *= i++/j--; \n i=i%j; \n default: break; \n } \n printf(\"%d %d %d\",sum,i,j); \n return 0; \n}",
+                    "marks": 3,
+                    "questionType": "Output Prediction"
+                },
+                {
+                    "part": "b",
+                    "questionText": "Re-write the given C code segment in Q.2(a) using the “if-else” statement without changing the logical meaning and output.",
+                    "codeSnippet": null,
+                    "marks": 3,
+                    "questionType": "Code Conversion"
+                }
+            ]
+        },
+        {
+            "questionNumber": 3,
+            "parts": [
+                {
+                    "part": "a",
+                    "questionText": "Write  a  complete  program  to print the  following  series  up  to nth term. Find the sum of  the series.\nSample Input n = 6\nSample Output 0, 5, 18, 39, 68, 105 \n\nYour program will also find the sum.",
+                    "codeSnippet": null,
+                    "marks": 3,
+                    "questionType": "Programming"
+                },
+                {
+                    "part": "b",
+                    "questionText": "Manually  trace the  following  code. Show changes of all  the  variables (i, j,  count) in  each step.",
+                    "codeSnippet": "int i, j, n=4, count = 0; \nfor (i = 1; i <= n; ++i) { \n for (j = 1; j <= n - i; ++j) { \n if (count <= n - 1) { \n ++count; \n } \n } \n count = 0; \n}",
+                    "marks": 3,
+                    "questionType": "Code Tracing"
+                }
+            ]
+        },
+        {
+            "questionNumber": 4,
+            "parts": [
+                {
+                    "part": "a",
+                    "questionText": "Manually trace the given code segment. Show the changes of all the variables (i, j , size, arr elements) in each step.",
+                    "codeSnippet": "int arr[5]={10,20,10,10,100}, size=5; \nfor(int i=0; i<size; i++){ \n for(int j=i+1; j<size; j++){ \n if(arr[i] == arr[j]){ \n arr[k] = arr[k+1]; \n size--; \n j--; \n } \n } \n}",
+                    "marks": 3,
+                    "questionType": "Code Tracing"
+                },
+                {
+                    "part": "b",
+                    "questionText": "Write  a  program  that reads n from  user. Take n  inputs into an  array  named marks of  size 100, where n<=100. Find the maximum and its index of the even values of the array.\n\nSample Input \n\n6 \n1  10  6  51  24  13 \n\nYour program should find max = 24, at index 4.",
+                    "codeSnippet": null,
+                    "marks": 3,
+                    "questionType": "Programming"
+                }
+            ]
+        },
+        {
+            "questionNumber": 5,
+            "parts": [
+                {
+                    "part": "a",
+                    "questionText": "Draw a flowchart for the code segment given below.",
+                    "codeSnippet": "int row = 10; \nwhile (row >= 1) { \n int column = 1; \n while (column <= 10) { \n if(row%2) printf(“<"); \n else printf(“>"); \n ++column; \n } \n --row; \n puts(\"\"); \n }",
+                    "marks": 3,
+                    "questionType": "Flowchart"
+                },
+                {
+                    "part": "b",
+                    "questionText": "Write a C program to display the following ‘Y’ pattern for n.\nSample\nInput\nSample Output\nFor, n=3\n*  *\n *\n *\n\nFor, n=5\n*    *\n *  *\n  *\n  *\n  *",
+                    "codeSnippet": null,
+                    "marks": 3,
+                    "questionType": "Programming"
+                }
+            ]
+        }
+    ]
+}
