@@ -1,0 +1,18 @@
+|-- .env
+|-- .gitignore
+|-- package-lock.json
+|-- package.json
+|-- src
+    |-- configs
+        |-- database.config.js
+    |-- controllers
+        |-- question.controller.js
+        |-- test.controller.js
+    |-- index.js
+    |-- models
+        |-- question.model.js
+    |-- routes
+        |-- question.routes.js
+        |-- test.routes.js
+    |-- services
+        |-- langchain.service.js
