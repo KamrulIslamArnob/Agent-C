@@ -1,39 +1,33 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-// exam schema
+// Exam schema
 const examSchema = new Schema({
-  exams: [
+  exam_id: { type: Number, required: true },
+  type: { type: String, required: true }, // e.g., "Mid Term Exam"
+  year: { type: Number, required: true }, // e.g., 2022
+  trimester: { type: String, required: true }, // e.g., "Fall"
+  course_code: { type: String, required: true }, // e.g., "CSE 1111"
+  course_title: { type: String, required: true }, // e.g., "Structured Programming Language"
+  total_marks: { type: Number, required: true }, // e.g., 30
+  duration: { type: String, required: true }, // e.g., "1:45 hours"
+  questions: [
     {
-      exam_id: { type: Number, required: true },
-      type: { type: String, required: true },
-      year: { type: Number, required: true },
-      trimester: { type: String, required: true },
-      course_code: { type: String, required: true },
-      total_marks: { type: Number, required: true },
-      duration: { type: String, required: true },
-      questions: [
+      question_id: { type: Number, required: true }, // Unique ID for the question
+      number: { type: Number, required: true }, // Question number (e.g., 1, 2, 3)
+      parts: [
         {
-          question_id: { type: Number, required: true },
-          number: { type: Number, required: true },
-          part: { type: String, required: false },
-          text: { type: String, required: true },
-          code: { type: String, required: false },
-          marks: { type: Number, required: true },
-          samples: [
-            {
-              input_main: { type: String, required: false },
-              input_sub: { type: String, required: false },
-              output: { type: String, required: true }
-            }
-          ]
+          part_id: { type: String, required: true }, // Part identifier (e.g., "a)", "b)")
+          text: { type: String, required: true }, // Question text
+          code: { type: String, required: false }, // Code snippet (if any)
+          marks: { type: Number, required: true } // Marks for this part
         }
       ]
     }
   ]
 });
 
-// exam model for mongoose
+// Exam model for Mongoose
 const Exam = mongoose.model('Exam', examSchema);
 
 module.exports = Exam;
