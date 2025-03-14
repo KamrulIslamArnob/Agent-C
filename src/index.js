@@ -5,8 +5,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();
 const { connectDB } = require('./configs/database.config');
-// test route
-const  testRoutes  = require('./routes/test.routes');
+
 // question route
 const questionRoutes = require('./routes/question.routes');
 
@@ -22,7 +21,6 @@ connectDB();
 
 
 // routes
-app.use('/api/test', testRoutes);
 app.use('/api/question', questionRoutes);
 
 
