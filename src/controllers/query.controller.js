@@ -1,14 +1,26 @@
-const contextSearchService = require('../services/context-search.service');
-const {GoogleGenerativeAI} = require("@google/generative-ai");
-
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { ChatGoogleGenerativeAI } = require("@langchain/google-genai"); // ✅ Correct Import
+const { BufferMemory } = require("langchain/memory");
+const contextSearchService = require("../services/context-search.service");
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({model: "gemini-2.0-flash"});
+const chatModel = new ChatGoogleGenerativeAI({
+    model: "gemini-2.0-flash",
+    apiKey: process.env.GEMINI_API_KEY,
+});
 
+
+
+
+// ✅ Create in-memory storage for chat history
+const memory = new BufferMemory({
+    memoryKey: "chat_history",
+    returnMessages: true
+});
 
 exports.askQuestion = async (req, res) => {
     try {
-        const {question} = req.body;
+        const { question } = req.body;
 
         if (!question) {
             return res.status(400).send({
@@ -16,13 +28,18 @@ exports.askQuestion = async (req, res) => {
             });
         }
 
+        // Fetch context from vector database
         const result = await contextSearchService.findRelevantContext(question);
 
         if (!result) {
-            res.status(400).send({
+            return res.status(400).send({
                 message: "No relevant data found"
             });
         }
+
+        // ✅ Retrieve past conversation history
+        const chatHistory = await memory.loadMemoryVariables({});
+        const previousMessages = chatHistory.chat_history || [];
 
         const systemPrompt = `
             You are an AI-powered C programming tutor designed to help students of United International University learn structured programming effectively. Your primary function is to solve C programming-related problems, explain concepts clearly, and provide step-by-step guidance like an experienced teacher who understands the strengths and weaknesses of each student.
@@ -39,29 +56,36 @@ Format of Answers:
 3. For Debugging Requests: Identify potential errors or inefficiencies in the given code. Explain the mistakes in a clear and encouraging way. Suggest optimized solutions or best practices.
 
 4. For Ambiguous Questions: Instead of assuming, ask clarifying questions to reduce ambiguity. If the user remains vague, provide a generalized explanation but also mention different possible interpretations.
+
+            Context: ${result}
+            Chat History: ${previousMessages.map(msg => `${msg.role}: ${msg.content}`).join("\n")}
+
+            Answer the user's question in a structured and clear way.
         `;
 
+        // ✅ Generate AI response with memory
+        const response = await chatModel.invoke([
+            { role: "system", content: systemPrompt },
+            { role: "user", content: question }
+        ]);
 
-        const response = await model.generateContent({
-            contents: [
-                { role: "model", parts: [{ text: `${systemPrompt} \n\nContext:\n${result}` }] }, // System instruction
-                { role: "user", parts: [{ text: `Question: ${question}` }] }
-            ]
-        });
+        // ✅ Save conversation to memory
+        await memory.saveContext(
+            { input: question },
+            { output: response.content }
+        );
 
-        console.log(response);
-
-
-        // const responseBeautify = JSON.stringify(response.response.text(), null, 2);
+        console.log("Stored Chat History:", chatHistory.chat_history);
 
 
         res.status(200).send({
-            response: response.response.text
+            response: response.content
         });
 
     } catch (err) {
+        console.error("Error:", err);
         res.status(500).send({
-            message: "Error asking question " + err
-        })
+            message: "Error processing question: " + err
+        });
     }
 };
