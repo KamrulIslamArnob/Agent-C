@@ -4,9 +4,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config();
-const {connectDB} = require('./configs/database.config');
-// test route
-const testRoutes = require('./routes/test.routes');
+const { connectDB } = require('./configs/database.config');
+
 // question route
 const questionRoutes = require('./routes/question.routes');
 
@@ -15,15 +14,15 @@ const questionRoutes = require('./routes/question.routes');
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // database connection
 connectDB();
 
 
 // routes
-app.use('/api/test', testRoutes);
 app.use('/api/question', questionRoutes);
+
 
 
 // server setup
