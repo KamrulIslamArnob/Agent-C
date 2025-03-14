@@ -7,7 +7,12 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const chatModel = new ChatGoogleGenerativeAI({
     model: "gemini-2.0-flash",
     apiKey: process.env.GEMINI_API_KEY,
+    temperature: 0.7,  // Adjust for creativity (0.0 = deterministic, 1.0 = highly random)
+    maxOutputTokens: 1024,  // Limit response length
+    topP: 0.95,  // Adjust nucleus sampling (0.0 = only the most likely token, 1.0 = diverse output)
+    topK: 40  // Adjust how many top tokens are considered
 });
+
 
 
 
