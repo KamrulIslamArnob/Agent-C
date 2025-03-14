@@ -9,6 +9,9 @@ const { connectDB } = require('./configs/database.config');
 // question route
 const questionRoutes = require('./routes/question.routes');
 
+// query route
+const queryRoutes = require('./routes/query.routes');
+
 
 // application setup
 const app = express();
@@ -22,6 +25,7 @@ connectDB();
 
 // routes
 app.use('/api/question', questionRoutes);
+app.use('/api/query', queryRoutes);
 
 
 
