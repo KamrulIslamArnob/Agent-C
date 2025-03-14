@@ -8,9 +8,6 @@ const generateEmbedding = async (text) => {
   return result.embedding.values; // Returns an array of floats
 };
 
-// Usage
-// generateEmbedding("C programming is widely used.").then(console.log);
-
 module.exports = {
   generateEmbedding,
 };
