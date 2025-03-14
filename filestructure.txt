@@ -2,17 +2,31 @@
 |-- .gitignore
 |-- package-lock.json
 |-- package.json
+|-- README.md
 |-- src
+    |-- agents
     |-- configs
         |-- database.config.js
     |-- controllers
         |-- question.controller.js
-        |-- test.controller.js
     |-- index.js
+    |-- middlewares
+        |-- upload.middleware.js
     |-- models
         |-- question.model.js
     |-- routes
+        |-- c_agent.routes.js
         |-- question.routes.js
-        |-- test.routes.js
     |-- services
-        |-- langchain.service.js
+        |-- embedding.store.service.js
+        |-- gemini.pdf.read.service.js
+        |-- generate-embedding.service.js
+        |-- pdf-parser.service.js
+        |-- text_chunking.service.js
+    |-- utils
+|-- uploads
+    |-- 1741952364057-Final_Exam_Question_223.pdf
+    |-- 1741952480998-Final_Exam_Question_223.pdf
+    |-- 1741968757942-Final_Exam_Question_223.pdf
+    |-- 1741968841785-Final_Exam_Question_223.pdf
+    |-- 1741970162277-Final_Exam_Question_223.pdf
