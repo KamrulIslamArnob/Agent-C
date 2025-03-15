@@ -1,0 +1,29 @@
+|-- .env
+|-- .gitignore
+|-- package-lock.json
+|-- package.json
+|-- README.md
+|-- src
+    |-- configs
+        |-- database.config.js
+    |-- controllers
+        |-- query.controller.js
+        |-- question.controller.js
+    |-- index.js
+    |-- middlewares
+        |-- upload.middleware.js
+    |-- models
+        |-- question.model.js
+    |-- routes
+        |-- c_agent.routes.js
+        |-- query.routes.js
+        |-- question.routes.js
+    |-- services
+        |-- context-search.service.js
+        |-- embedding.store.service.js
+        |-- gemini.pdf.read.service.js
+        |-- generate-embedding.service.js
+        |-- pdf-parser.service.js
+        |-- text_chunking.service.js
+|-- uploads
+    |-- a.txt
