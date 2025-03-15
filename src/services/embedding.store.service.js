@@ -5,7 +5,7 @@ let collection;
 
 const initCollection = async () => {
   const db = await connectDB();
-  collection = db.collection("question-vectors");
+  collection = db.collection("test");
 };
 
 const storeEmbedding = async (text, embedding) => {
