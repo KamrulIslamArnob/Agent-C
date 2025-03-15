@@ -11,22 +11,22 @@ const initCollection = async () => {
                 const db = await connectDB();
                 if (!db) throw new Error("Failed to get database instance.");
 
-                collection = db.collection("question-vectors");
-                console.log("Collection initialized successfully.");
+                collection = db.collection("question-vectors"); // Now works correctly
+                console.log("✅ Collection initialized successfully.");
             } catch (error) {
-                console.error("Error initializing collection:", error);
-                collectionReady = null; // Reset so it can retry
+                console.error("❌ Error initializing collection:", error);
+                collectionReady = null; 
                 throw error;
             }
         })();
     }
-    return collectionReady; // Wait for the promise to resolve
+    return collectionReady; 
 };
 
 // Function to perform vector search
 async function findRelevantContext(query) {
     try {
-        await initCollection(); // Ensure collection is initialized before use
+        await initCollection(); // Ensure collection is initialized
 
         if (!collection) {
             throw new Error("Database collection is not initialized.");
@@ -53,12 +53,12 @@ async function findRelevantContext(query) {
 
         return result.map(doc => doc.text);
     } catch (error) {
-        console.error("Error finding relevant context:", error);
+        console.error("❌ Error finding relevant context:", error);
         return [];
     }
 }
 
-// Ensure the collection initializes when the module is loaded
+// Initialize collection when the module is loaded
 initCollection().catch(console.error);
 
 module.exports = { findRelevantContext };
