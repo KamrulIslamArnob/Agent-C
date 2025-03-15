@@ -4,10 +4,10 @@
 |-- package.json
 |-- README.md
 |-- src
-    |-- agents
     |-- configs
         |-- database.config.js
     |-- controllers
+        |-- query.controller.js
         |-- question.controller.js
     |-- index.js
     |-- middlewares
@@ -16,17 +16,14 @@
         |-- question.model.js
     |-- routes
         |-- c_agent.routes.js
+        |-- query.routes.js
         |-- question.routes.js
     |-- services
+        |-- context-search.service.js
         |-- embedding.store.service.js
         |-- gemini.pdf.read.service.js
         |-- generate-embedding.service.js
         |-- pdf-parser.service.js
         |-- text_chunking.service.js
-    |-- utils
 |-- uploads
-    |-- 1741952364057-Final_Exam_Question_223.pdf
-    |-- 1741952480998-Final_Exam_Question_223.pdf
-    |-- 1741968757942-Final_Exam_Question_223.pdf
-    |-- 1741968841785-Final_Exam_Question_223.pdf
-    |-- 1741970162277-Final_Exam_Question_223.pdf
+    |-- a.txt
