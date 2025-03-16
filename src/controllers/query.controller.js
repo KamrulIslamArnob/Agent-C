@@ -74,13 +74,15 @@ Format of Answers:
             { role: "user", content: question }
         ]);
 
+        console.log(response);
+
         // ✅ Save conversation to memory
         await memory.saveContext(
             { input: question },
             { output: response.content }
         );
 
-        console.log("Stored Chat History:", chatHistory.chat_history);
+        // console.log("Stored Chat History:", chatHistory.chat_history);
 
 
         res.status(200).send({
