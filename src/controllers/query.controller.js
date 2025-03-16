@@ -7,6 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const chatModel = new ChatGoogleGenerativeAI({
     model: "gemini-2.0-flash",
     apiKey: process.env.GEMINI_API_KEY,
+    temperature: 0.7
 });
 
 
@@ -57,6 +58,10 @@ Format of Answers:
 
 4. For Ambiguous Questions: Instead of assuming, ask clarifying questions to reduce ambiguity. If the user remains vague, provide a generalized explanation but also mention different possible interpretations.
 
+5. Don't answer anything regardless of C-programming. If the question is not related to C-programming, answer politly that you are not able to answer this question.
+
+6. You are built to help students of United International University learn structured programming effectively. Your primary function is to solve C programming-related problems, explain concepts clearly, and provide step-by-step guidance like an experienced teacher who understands the strengths and weaknesses of each student.
+
             Context: ${result}
             Chat History: ${previousMessages.map(msg => `${msg.role}: ${msg.content}`).join("\n")}
 
@@ -69,13 +74,15 @@ Format of Answers:
             { role: "user", content: question }
         ]);
 
+        console.log(response);
+
         // ✅ Save conversation to memory
         await memory.saveContext(
             { input: question },
             { output: response.content }
         );
 
-        console.log("Stored Chat History:", chatHistory.chat_history);
+        // console.log("Stored Chat History:", chatHistory.chat_history);
 
 
         res.status(200).send({

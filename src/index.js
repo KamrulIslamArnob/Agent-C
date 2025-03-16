@@ -6,11 +6,15 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { connectDB } = require('./configs/database.config');
 
+
 // question route
 const questionRoutes = require('./routes/question.routes');
 
 // query route
 const queryRoutes = require('./routes/query.routes');
+
+// test route
+const testRoutes = require('./routes/test.routes');
 
 
 // application setup
@@ -26,6 +30,7 @@ connectDB();
 // routes
 app.use('/api/question', questionRoutes);
 app.use('/api/query', queryRoutes);
+app.use('/api/test', testRoutes);
 
 
 
