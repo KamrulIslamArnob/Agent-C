@@ -10,15 +10,16 @@
     |-- controllers
         |-- query.controller.js
         |-- question.controller.js
+        |-- test.controller.js
     |-- index.js
     |-- middlewares
         |-- upload.middleware.js
     |-- models
         |-- question.model.js
     |-- routes
-        |-- c_agent.routes.js
         |-- query.routes.js
         |-- question.routes.js
+        |-- test.routes.js
     |-- services
         |-- context-search.service.js
         |-- embedding.store.service.js
@@ -32,4 +33,3 @@
     |-- 1742074097329-final-233.pdf
     |-- 1742074204262-final-233.pdf
     |-- 1742074260904-final-233.pdf
-    |-- a.txt
