@@ -1,5 +1,6 @@
 |-- .env
 |-- .gitignore
+|-- code.md
 |-- package-lock.json
 |-- package.json
 |-- README.md
@@ -26,4 +27,9 @@
         |-- pdf-parser.service.js
         |-- text_chunking.service.js
 |-- uploads
+    |-- 1742073975646-final-233.pdf
+    |-- 1742074053895-final-233.pdf
+    |-- 1742074097329-final-233.pdf
+    |-- 1742074204262-final-233.pdf
+    |-- 1742074260904-final-233.pdf
     |-- a.txt
