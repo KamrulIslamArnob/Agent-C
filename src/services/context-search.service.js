@@ -1,32 +1,11 @@
-const { connectDB } = require('../configs/database.config');
-const embeddingGenerator = require('../services/generate-embedding.service');
-
-let collection;
-let collectionReady = null; // A promise that ensures the collection is ready
-
-const initCollection = async () => {
-    if (!collectionReady) {
-        collectionReady = (async () => {
-            try {
-                const db = await connectDB();
-                if (!db) throw new Error("Failed to get database instance.");
-
-                collection = db.collection("question-vectors"); // Now works correctly
-                console.log("✅ Collection initialized successfully.");
-            } catch (error) {
-                console.error("❌ Error initializing collection:", error);
-                collectionReady = null; 
-                throw error;
-            }
-        })();
-    }
-    return collectionReady; 
-};
+const embeddingGenerator = require("../services/generate-embedding.service");
+const connectMongoDB = require("../configs/database.config"); // Ensure MongoDB is connected
 
 // Function to perform vector search
 async function findRelevantContext(query) {
     try {
-        await initCollection(); // Ensure collection is initialized
+        const db = await connectMongoDB(); // Ensure connection is established
+        const collection = db.collection("c_agent_collection"); // Change to your actual collection name
 
         if (!collection) {
             throw new Error("Database collection is not initialized.");
@@ -51,14 +30,12 @@ async function findRelevantContext(query) {
             }
         ]).toArray();
 
+        console.log("✅ Vector search completed successfully.");
         return result.map(doc => doc.text);
     } catch (error) {
         console.error("❌ Error finding relevant context:", error);
         return [];
     }
 }
-
-// Initialize collection when the module is loaded
-initCollection().catch(console.error);
 
 module.exports = { findRelevantContext };
